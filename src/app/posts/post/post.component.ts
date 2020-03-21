@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
 import { Article } from '../article';
+import { Observable } from 'rxjs';
+import { map, share, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post',
@@ -11,20 +13,31 @@ import { Article } from '../article';
 export class PostComponent implements OnInit {
   routerPara;
   articleContext: Article;
-  constructor(private router: ActivatedRoute, private posrService: PostService) { }
+  articleContext$: Observable<Article>;
+  constructor(private router: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit() {
 
     // 一種是subscribe
-    this.router.paramMap.subscribe(para => {
-      this.routerPara = para.get('id');
-      this.posrService.getArticle(this.routerPara).subscribe(articleData => {
-        this.articleContext = articleData.article;
-      });
-
-    });
+    // this.router.paramMap.subscribe(para => {
+    //   this.routerPara = para.get('id');
+    //   this.postService.getArticle(this.routerPara).subscribe(articleData => {
+    //     this.articleContext = articleData.article;
+    //   });
+    // });
     // 一種是快照
-    console.log(this.router.snapshot.paramMap.get('id'));
+    // console.log(this.router.snapshot.paramMap.get('id'));
+
+    this.articleContext$ = this.router.paramMap.pipe(
+      map(param => param.get('id')),
+      switchMap(id => this.postService.getArticle(id)),
+      map(article => article.article));
+
+
+
+
+
+
   }
 
 }

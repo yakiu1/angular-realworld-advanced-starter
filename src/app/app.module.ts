@@ -5,16 +5,14 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { PostsModule } from './posts/posts.module';
-import { AuthModule } from './auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
-  imports: [BrowserModule, RouterModule, HttpClientModule, LayoutModule, PostsModule,
-    AuthModule, AppRoutingModule],
+  imports: [BrowserModule, RouterModule, HttpClientModule, LayoutModule,
+    AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
