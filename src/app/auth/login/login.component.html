@@ -5,15 +5,28 @@
       <div class="col-md-6 col-md-offset-3 col-xs-12">
         <h1 class="text-xs-center">Sign in</h1>
 
-        <div>
+        <div ngForm #form="ngForm">
           <fieldset class="form-group">
-            <input name="email" class="form-control form-control-lg" type="text" placeholder="Email">
+            <input ngModel #emailInput="ngModel" required email name="email" class="form-control form-control-lg"
+              type="text" placeholder="Email">
           </fieldset>
 
+          <span *ngIf="emailInput.invalid && emailInput.dirty">
+            <span class="alert" *ngIf="emailInput.errors.email">* 請輸入正確的Email</span>
+            <span class="alert" *ngIf="emailInput.errors.required">* 請輸入必要欄位 </span>
+          </span>
+          {{emailInput.value}}
+
           <fieldset class="form-group">
-            <input name="password" class="form-control form-control-lg" type="password" placeholder="Password">
+            <input ngModel #passwordInput="ngModel" required minlength="4" name="password"
+              class="form-control form-control-lg" type="password" placeholder="Password">
           </fieldset>
-          <button (click)="doLogin($event)" class="btn btn-lg btn-primary pull-xs-right">
+          <span *ngIf="passwordInput.invalid && passwordInput.dirty">
+            <span class="alert" *ngIf="passwordInput.errors.minlength">* 密碼需大於4字元</span>
+            <span class="alert" *ngIf="passwordInput.errors.required">* 請輸入必要欄位</span>
+          </span>
+
+          <button [disabled]="form.invalid" (click)="doLogin($event)" class="btn btn-lg btn-primary pull-xs-right">
             Sign in
           </button>
         </div>

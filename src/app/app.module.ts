@@ -7,12 +7,18 @@ import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
-  imports: [BrowserModule, RouterModule, HttpClientModule, LayoutModule,
-    AppRoutingModule],
+  imports: [BrowserModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    LayoutModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

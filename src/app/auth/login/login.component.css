@@ -1,0 +1,7 @@
+.ng-invalid .ng-dirty{
+color: tomato;
+}
+
+.alert{
+  color: tomato;
+}
