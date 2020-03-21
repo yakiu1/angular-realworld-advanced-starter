@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, ValidationErrors, FormControl } from '@angular/forms';
 import { asLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Component({
@@ -11,16 +11,15 @@ export class EditorComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
   form;
-  ngOnInit() {
 
+  ngOnInit() {
     this.form = this.fb.group(
       {
-        title: this.fb.control('新增文章', [Validators.required]),
+        title: this.fb.control('新增文章', [customVaildOne]),
         context: this.fb.control('寫入文章內容'),
         tags: this.fb.array([this.fb.control('HTML'), this.fb.control('Angular')])
       }
     );
-
   }
 
 
@@ -39,5 +38,11 @@ export class EditorComponent implements OnInit {
     this.tags.removeAt(index);
   }
 
+}
 
+export function customVaildOne(control: FormControl) {
+  console.log(control);
+  return control.value === '' ? {
+    twoAtError: true
+  } : null;
 }
