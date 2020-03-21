@@ -11,7 +11,7 @@
     <div class="row">
 
       <div class="col-md-12">
-        <div *ngFor="let article of articles" class="post-preview">
+        <div *ngFor="let article of (articles$ |async)" class="post-preview">
           <div class="post-meta">
             <div class="info">
               <span href="profile.html" class="author">{{ article.author}}</span>
@@ -20,7 +20,7 @@
           </div>
           <a [routerLink]="['/','main','post',article.slug]" class="preview-link">
             <h1>{{article.title}}</h1>
-            <p>{{article.body}}</p>
+            <p>{{article.description}}</p>
             <span>Read more...</span>
           </a>
         </div>
