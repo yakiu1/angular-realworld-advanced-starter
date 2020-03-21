@@ -8,10 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [BrowserModule, RouterModule, HttpClientModule, LayoutModule, PostsModule,
     AuthModule, AppRoutingModule],
   providers: [],

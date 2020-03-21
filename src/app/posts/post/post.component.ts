@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PostService } from '../post.service';
+import { Article } from '../article';
 
 @Component({
   selector: 'app-post',
@@ -8,15 +10,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostComponent implements OnInit {
   routerPara;
-  constructor(private router: ActivatedRoute) { }
+  articleContext: Article;
+  constructor(private router: ActivatedRoute, private posrService: PostService) { }
 
   ngOnInit() {
+
     // 一種是subscribe
-    this.router.params.subscribe(para => {
-      this.routerPara = para.id;
+    this.router.paramMap.subscribe(para => {
+      this.routerPara = para.get('id');
+      this.posrService.getArticle(this.routerPara).subscribe(articleData => {
+        this.articleContext = articleData.article;
+      });
+
     });
     // 一種是快照
-    console.log(this.router.snapshot.params.id);
+    console.log(this.router.snapshot.paramMap.get('id'));
   }
 
 }

@@ -1,14 +1,14 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand">conduit </a>
+    <a [routerLink]="['/','main']" class="navbar-brand">conduit </a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/main/create']" routerLinkActive="router-link-active">
+        <a class="nav-link" [routerLink]="['/','main','create']" routerLinkActive="router-link-active">
           <i class="ion-compose"></i>&nbsp;
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Sign in</a>
+        <a class="nav-link" [routerLink]="['/','login']" routerLinkActive="router-link-active">Sign in</a>
       </li>
     </ul>
   </div>

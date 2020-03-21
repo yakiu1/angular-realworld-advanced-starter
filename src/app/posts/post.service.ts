@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Articles, SingleArticle, CreateArticle } from './article';
+import { Articles, SingleArticle, CreateArticle, Article } from './article';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getArticles() {
     console.log(environment);
